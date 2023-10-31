@@ -1,1 +1,0 @@
-Todos los headers van en esta ruta.
