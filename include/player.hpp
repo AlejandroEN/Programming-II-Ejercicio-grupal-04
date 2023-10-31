@@ -1,8 +1,10 @@
 #ifndef EJERCICIO_04_GRUPAL_PLAYER_HPP
 #define EJERCICIO_04_GRUPAL_PLAYER_HPP
 
-#include <string>
 #include <vector>
+#include <string>
+#include <format>
+#include "dice.hpp"
 #include "../utils/utilities.hpp"
 
 using namespace std;
@@ -11,21 +13,27 @@ class Player
 {
 private:
     string _playerName;
-    int _playerNumber;
-    int _coins; // Cantidad de fichas
+    int _chips;
+
 public:
-    Player(int playerNumber);
-    Player(string playerName);
-    ~Player();
+    explicit Player(const string &playerName);
 
-    int getCoins() const;
-    string getNombre() const;
-    int getPlayerNumber() const;
+    enum class MoveType
+    {
+        ATTACK,
+        DEFEND
+    };
 
-    void setCoins(int &coins);
+    // Getters
+    [[nodiscard]] int getChips() const;
+    [[nodiscard]] string getNombre() const;
 
+    // Setters
+    void setPlayerName(string &playerName);
+
+    // Methods
     void decreaseCoins();
-    static vector<int> getDiceNumbers(int &dicesAmount);
+    [[nodiscard]] SuperVector<int> getDiceValues(MoveType moveType) const;
 };
 
 #endif //EJERCICIO_04_GRUPAL_PLAYER_HPP

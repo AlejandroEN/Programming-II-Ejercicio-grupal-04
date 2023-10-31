@@ -1,11 +1,23 @@
-#include "include/game.hpp"
+#include "include/menu.hpp"
+#include "include/player.hpp"
 
 int main()
 {
-    auto jugador1Name = input<string>("Ingrese el nombre del jugador 1: ");
-    auto jugador2Name = input<string>("Ingrese el nombre del jugador 2: ");
+    auto *jugador1 = new Player("Jugador 1");
+    auto *jugador2 = new Player("Jugador 2");
 
-    auto *jugador1 = new Player(jugador1Name);
-    auto *jugador2 = new Player(jugador2Name);
-    runGame(jugador1, jugador2);
+    while (true)
+    {
+        auto option = getMenuOption({"Cambiar el nombre de los jugadores",
+                                                "Comenzar el juego",
+                                                "Salir"});
+
+        switch (option)
+        {
+            case 1: setPlayersNames(jugador1, jugador2); break;
+            case 2: runGame(jugador1, jugador2); break;
+            case 3: return 0;
+            default: break;
+        }
+    }
 }

@@ -34,3 +34,4 @@
 # User-defined
 cmake-build-debug/
 .idea/
+.clang-tidy

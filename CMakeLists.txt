@@ -7,4 +7,5 @@ add_executable(Ejercicio_04_Grupal
                 main.cpp
                 utils/utilities.cpp
                 src/player.cpp
-                src/game.cpp)
+                src/menu.cpp
+                src/dice.cpp)

@@ -1,31 +1,31 @@
 #include "../include/Player.hpp"
 
-Player::Player(int playerNumber)
-{
-    _playerNumber = playerNumber;
-    _coins = 3;
-}
-
-Player::Player(string playerName)
+Player::Player(const string &playerName)
 {
     _playerName = playerName;
-    _coins = 3;
+    _chips = 3;
 }
 
 string Player::getNombre() const { return _playerName; }
-int Player::getPlayerNumber() const { return _playerNumber; }
-int Player::getCoins() const { return _coins; }
 
-void Player::decreaseCoins() { _coins--; }
+int Player::getChips() const { return _chips; }
 
-vector<int> Player::getDiceNumbers(int &dicesAmount)
+void Player::setPlayerName(string &playerName) { _playerName = playerName; }
+
+void Player::decreaseCoins() { _chips--; }
+
+SuperVector<int> Player::getDiceValues(MoveType moveType) const
 {
-    vector<int> values;
+    string text;
 
-    for (int i = 0; i < dicesAmount; i++)
-    {
-        values.push_back(random<int>(1, 6));
-    }
+    if  (moveType == MoveType::ATTACK)
+        text = format("{}, ¿con cuántos dados ataca?: ", this->getNombre());
+    else
+        text = format("{}, ¿con cuántos dados defiende?: ", this->getNombre());
 
-    return values;
+    auto attackAmount = input<int>(1, this->getChips(), text);
+    auto attackDiceNumbers = simulateDiceRoll(attackAmount);
+    attackDiceNumbers.sort(SuperVector<int>::Order::DESC);
+
+    return attackDiceNumbers;
 }
