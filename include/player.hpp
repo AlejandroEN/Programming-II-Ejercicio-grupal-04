@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../utils/utilities.hpp"
 
 using namespace std;
 
@@ -17,12 +18,14 @@ public:
     Player(string playerName);
     ~Player();
 
+    int getCoins() const;
     string getNombre() const;
     int getPlayerNumber() const;
-    int getCoins() const;
 
     void setCoins(int &coins);
-    static vector<int> getDiceNumbers(int &dices);
+
+    void decreaseCoins();
+    static vector<int> getDiceNumbers(int &dicesAmount);
 };
 
 #endif //EJERCICIO_04_GRUPAL_PLAYER_HPP

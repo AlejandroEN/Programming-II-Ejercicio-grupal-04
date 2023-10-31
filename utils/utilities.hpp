@@ -14,4 +14,7 @@ T random(T lowerLimit, T upperLimit);
 
 int getMenuOption(vector<string> options);
 
+template <typename T>
+string getVectorElements(vector<T> targetVector);
+
 #endif //PROJECT_01_LECTURE_UTILITIES_HPP

@@ -15,6 +15,7 @@ T input(const string &message)
     cin >> value;
     return value;
 }
+template string input(const string &);
 
 /**
  * Generates a random integer between the given lower and upper limits (inclusive).
@@ -90,3 +91,17 @@ int getMenuOption(vector<string> options)
 
     return option;
 }
+
+template <typename T>
+string getVectorElements(vector<T> targetVector)
+{
+    string elements;
+
+    for (auto element : targetVector)
+    {
+        elements += to_string(element) + " ";
+    }
+
+    return elements;
+}
+template string getVectorElements(vector<int> targetVector);
